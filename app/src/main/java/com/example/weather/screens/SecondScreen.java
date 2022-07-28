@@ -13,8 +13,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.weather.R;
+import com.example.weather.retrofit.ApiClient;
 import com.example.weather.retrofit.ApiInterface;
 import com.example.weather.retrofit.CityModel;
+
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,6 +53,10 @@ public class SecondScreen extends AppCompatActivity {
         task.execute();
 
     }
+
+
+
+
 
     private void glide(){
         Glide.with(this).load(R.drawable.tempgif).into(gifTemp);
@@ -101,40 +108,20 @@ public class SecondScreen extends AppCompatActivity {
         @Override
         protected Void doInBackground(String... strings) {
 
-            Retrofit retrofit = new Retrofit.Builder().baseUrl("https://api.openweathermap.org/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-
-            ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-
-
-            Call<CityModel> call = apiInterface.getCity(city,API_KEY,"metric");
-
-            call.enqueue(new Callback<CityModel>() {
-                @Override
-                public void onResponse(Call<CityModel> call, Response<CityModel> response) {
-                    secondCity.setText(city);
-                    secondTemp.setText(response.body().getMain().getTemp() + "°");
-                    tempTV.setText(response.body().getMain().getTemp() + "°");
-                    humidityTV.setText(response.body().getMain().getHumidity() + "%");
-                    windTV.setText(response.body().getWind().getSpeed());
-                    weatherTV.setText(response.body().getWeather().get(0).getMain());
-                }
-
-                @Override
-                public void onFailure(Call<CityModel> call, Throwable t) {
-
-                    Toast.makeText(SecondScreen.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
-
-                }
-            });
-
+            Response<CityModel> response = null;
             try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
+                 response =ApiClient.getINSTANCE().getCity(city).execute();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            secondCity.setText(city);
+            secondTemp.setText(response.body().getMain().getTemp() + "°");
+            tempTV.setText(response.body().getMain().getTemp() + "°");
+            humidityTV.setText(response.body().getMain().getHumidity() + "%");
+            windTV.setText(response.body().getWind().getSpeed());
+            weatherTV.setText(response.body().getWeather().get(0).getMain());
+
 
             return null;
         }

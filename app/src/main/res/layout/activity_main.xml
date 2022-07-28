@@ -9,8 +9,13 @@
 
     <ImageView
         android:id="@+id/imageWeather"
-        android:layout_width="415dp"
-        android:layout_height="284dp"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_220sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_345sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,26 +24,34 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="@dimen/_295sdp"
         android:text="Weather App"
         android:textColor="#000000"
-        android:textSize="48sp"
+        android:textSize="@dimen/_38ssp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageWeather" />
 
     <EditText
         android:id="@+id/citySearch"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_200sdp"
         android:background="@drawable/custom_corner"
         android:ems="10"
+        android:gravity="center|left"
         android:hint="Enter City"
         android:inputType="textPersonName"
-        android:paddingStart="10dp"
-        android:textSize="20sp"
+        android:paddingStart="@dimen/_10sdp"
+        android:textSize="@dimen/_20ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,26 +60,30 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
+        android:layout_height="@dimen/_170sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_30sdp"
         android:backgroundTint="#6D7FD8"
         android:visibility="visible"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/citySearch">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="377dp"
-            android:layout_height="180dp"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_180sdp"
             android:backgroundTint="#6D7FD8">
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="65dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="200dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginStart="@dimen/_130sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/cloud" />
@@ -75,10 +92,10 @@
                 android:id="@+id/firstCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:text="Cairo"
                 android:textColor="#000000"
-                android:textSize="48sp"
+                android:textSize="@dimen/_40ssp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
@@ -87,9 +104,9 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="86dp"
-                android:layout_height="55dp"
-                android:layout_marginBottom="16dp"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/temp" />
@@ -98,23 +115,27 @@
                 android:id="@+id/tempDegree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_25sdp"
                 android:text="30°"
                 android:textColor="#000000"
-                android:textSize="34sp"
+                android:textSize="@dimen/_25ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView2"
                 app:layout_constraintStart_toEndOf="@+id/imageView" />
 
             <TextView
                 android:id="@+id/firstWeather"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_25sdp"
                 android:text="Smoke"
                 android:textColor="#000000"
-                android:textSize="30sp"
+                android:textSize="@dimen/_25ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -122,8 +143,8 @@
 
     <ImageView
         android:id="@+id/iconSearch"
-        android:layout_width="47dp"
-        android:layout_height="39dp"
+        android:layout_width="@dimen/_47sdp"
+        android:layout_height="@dimen/_39sdp"
         app:layout_constraintBottom_toBottomOf="@+id/citySearch"
         app:layout_constraintEnd_toEndOf="@+id/citySearch"
         app:layout_constraintHorizontal_bias="0.947"
@@ -132,82 +153,4 @@
         app:layout_constraintVertical_bias="0.571"
         app:srcCompat="@drawable/search" />
 
-    <!--  <androidx.cardview.widget.CardView
-          android:id="@+id/card_view"
-          android:layout_width="409dp"
-          android:layout_height="180dp"
-          android:layout_marginStart="15dp"
-          android:layout_marginTop="50dp"
-          android:layout_marginEnd="15dp"
-          android:background="@drawable/custom_card"
-          android:backgroundTint="@color/material_dynamic_neutral99"
-          android:visibility="visible"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/citySearch">
-
-          <androidx.constraintlayout.widget.ConstraintLayout
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@drawable/custom_corner"
-              android:backgroundTint="#3F51B5">
-
-               <ImageView
-                  android:id="@+id/imageView2"
-                  android:layout_width="80dp"
-                  android:layout_height="56dp"
-                  android:layout_marginStart="44dp"
-                  android:layout_marginBottom="16dp"
-                  app:layout_constraintBottom_toBottomOf="parent"
-                  app:layout_constraintStart_toEndOf="@+id/textView5"
-                  app:srcCompat="@drawable/cloud" />
-
-              <TextView
-                  android:id="@+id/textView3"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="16dp"
-                  android:text="Cairo"
-                  android:textColor="#000000"
-                  android:textSize="48sp"
-                  android:textStyle="bold"
-                  app:layout_constraintEnd_toEndOf="parent"
-                  app:layout_constraintHorizontal_bias="0.498"
-                  app:layout_constraintStart_toStartOf="parent"
-                  app:layout_constraintTop_toTopOf="parent" />
-
-              <ImageView
-                  android:id="@+id/imageView"
-                  android:layout_width="100dp"
-                  android:layout_height="58dp"
-                  android:layout_marginBottom="16dp"
-                  app:layout_constraintBottom_toBottomOf="parent"
-                  app:layout_constraintStart_toStartOf="parent"
-                  app:srcCompat="@drawable/temp" />
-
-              <TextView
-                  android:id="@+id/textView5"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginBottom="16dp"
-                  android:text="30"
-                  android:textColor="#000000"
-                  android:textSize="48sp"
-                  app:layout_constraintBottom_toBottomOf="parent"
-                  app:layout_constraintStart_toEndOf="@+id/imageView" />
-
-              <TextView
-                  android:id="@+id/textView7"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginStart="10dp"
-                  android:layout_marginBottom="16dp"
-                  android:text="Smoke"
-                  android:textColor="#000000"
-                  android:textSize="34sp"
-                  app:layout_constraintBottom_toBottomOf="parent"
-                  app:layout_constraintStart_toEndOf="@+id/imageView2" />
-
-          </androidx.constraintlayout.widget.ConstraintLayout>
-      </androidx.cardview.widget.CardView>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

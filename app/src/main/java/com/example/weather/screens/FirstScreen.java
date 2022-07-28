@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.weather.R;
+import com.example.weather.retrofit.ApiClient;
 import com.example.weather.retrofit.ApiInterface;
 import com.example.weather.retrofit.CityModel;
 
@@ -31,7 +32,6 @@ public class FirstScreen extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     TextView tempDegree , firstCity , firstWeather;
-    private static final String API_KEY = "c6105274798eba971ecc93a1a4983f91" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,41 +52,49 @@ public class FirstScreen extends AppCompatActivity {
 
 
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://api.openweathermap.org/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-
-        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-
-
         findViewById(R.id.iconSearch).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String city = citySearch.getText().toString().trim() ;
+                String city = citySearch.getText().toString().trim();
 
-                Call<CityModel> call = apiInterface.getCity(city,API_KEY,"metric");
-                call.enqueue(new Callback<CityModel>() {
-                    @Override
-                    public void onResponse(Call<CityModel> call, Response<CityModel> response) {
-                        editor.putString("city",city);
-                        editor.putString("temp",response.body().getMain().getTemp());
-                        editor.putString("weather",response.body().getWeather().get(0).getMain());
-                        editor.commit();
+                if (city.contentEquals("")) {
+                    citySearch.setError("Enter city name");
+                    citySearch.requestFocus();
+                }
 
-                        Intent intent = new Intent(FirstScreen.this,SecondScreen.class);
 
-                        intent.putExtra("city",city);
+                else {
 
-                        startActivity(intent);
-                    }
+                    ApiClient.getINSTANCE().getCity(city).enqueue(new Callback<CityModel>() {
+                        @Override
+                        public void onResponse(Call<CityModel> call, Response<CityModel> response) {
+                            if (response.isSuccessful()) {
+                                Intent intent = new Intent(FirstScreen.this, SecondScreen.class);
 
-                    @Override
-                    public void onFailure(Call<CityModel> call, Throwable t) {
-                        Toast.makeText(FirstScreen.this, "Error", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                                intent.putExtra("city", city);
+
+                                startActivity(intent);
+
+                                editor.putString("city", city);
+                                editor.putString("temp", response.body().getMain().getTemp());
+                                editor.putString("weather", response.body().getWeather().get(0).getMain());
+                                editor.commit();
+
+                            } else{
+
+                                    citySearch.setError("Something wrong");
+                                    citySearch.requestFocus();
+                                }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<CityModel> call, Throwable t) {
+                            Toast.makeText(FirstScreen.this, "Error", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
 
             }
         });
